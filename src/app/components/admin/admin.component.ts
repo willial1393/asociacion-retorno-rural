@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from 'primeng/api';
-import {ProjectService} from '../../services/project.service';
-import {Project} from '../../models/project';
 import {AppComponent} from '../../app.component';
-import {StateService} from '../../services/state.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {ConfigGlobal} from '../../utilities/config-global';
+import {Product} from '../../models/product';
+import {ProductService} from '../../services/product.service';
 
 @Component({
     selector: 'app-admin',
@@ -16,56 +15,38 @@ import {ConfigGlobal} from '../../utilities/config-global';
 export class AdminComponent implements OnInit {
 
     displayDialog: boolean;
-    project: Project = new Project();
-    selectedProject: any;
-    newProject: boolean;
-    projects: Project[] = [];
+    product: Product = new Product();
+    selectedProduct: any;
+    newProduct: boolean;
+    products: Product[] = [];
     cols: any[] = [];
 
     constructor(private messageService: MessageService,
-                private projectService: ProjectService,
-                private stateService: StateService,
+                private productService: ProductService,
                 private sanitizer: DomSanitizer,
                 private appComponent: AppComponent,
                 private route: Router) {
-        this.stateService.getAll().subscribe(res => {
-            if (res['result']) {
-                this.cols = [
-                    {field: 'name', header: 'Nombre', type: 'text', required: true},
-                    {field: 'type', header: 'Tipo', type: 'text', required: true},
-                    {field: 'image', header: 'Imagen', type: 'image', required: true},
-                    {field: 'url', header: 'Url', type: 'text', required: true},
-                    {field: 'description', header: 'Descripción', type: 'text-area', required: true},
-                    {
-                        field: 'state', header: 'Estado', type: 'select'
-                        , options: res['response'], label: 'name', required: true
-                    }
-                ];
-            } else {
-                this.appComponent.showErrorService(res);
-            }
-        });
-        this.loadProjects();
+        this.loadProducts();
     }
 
     ngOnInit() {
     }
 
-    onUpload(event, project: Project, form) {
+    onUpload(event, product: Product, form) {
         const reader = new FileReader();
         reader.readAsDataURL(event.files[0]);
         reader.onload = (_event) => {
-            project.image = reader.result.toString();
+            product.image = reader.result.toString();
         };
         form.clear();
     }
 
-    loadProjects() {
+    loadProducts() {
         this.appComponent.showLoading(true);
-        this.projectService.getAll().subscribe(res => {
+        this.productService.getAll().subscribe(res => {
             this.appComponent.showLoading(false);
             if (res['result']) {
-                this.projects = res['response'];
+                this.products = res['response'];
             } else {
                 this.appComponent.showErrorService(res);
             }
@@ -76,7 +57,7 @@ export class AdminComponent implements OnInit {
         this.messageService.add({
             key: 'c',
             severity: 'warn',
-            summary: '¿Desea eliminar el proyecto?',
+            summary: '¿Desea eliminar el Producto?',
             detail: ''
         });
     }
@@ -86,24 +67,23 @@ export class AdminComponent implements OnInit {
     }
 
     showDialogToAdd() {
-        this.selectedProject = null;
-        this.newProject = true;
-        this.project = new Project();
+        this.selectedProduct = null;
+        this.newProduct = true;
+        this.product = new Product();
         this.displayDialog = true;
     }
 
     save() {
-        this.project.state_id = this.project.state.id;
         this.appComponent.showLoading(true);
-        this.projectService.store(this.project).subscribe(res => {
+        this.productService.store(this.product).subscribe(res => {
             this.appComponent.showLoading(false);
             if (res['result']) {
                 this.displayDialog = false;
-                this.project = null;
-                this.loadProjects();
+                this.product = null;
+                this.loadProducts();
                 this.appComponent.showToast(
                     'Operación exitosa',
-                    'Proyecto guardado',
+                    'Producto guardado',
                     'success'
                 );
             } else {
@@ -116,15 +96,15 @@ export class AdminComponent implements OnInit {
         this.displayDialog = false;
         this.closeToast();
         this.appComponent.showLoading(true);
-        const project: Project = new Project();
-        Object.assign(project, this.selectedProject);
-        this.projectService.destroy(project).subscribe(res => {
+        const product: Product = new Product();
+        Object.assign(product, this.selectedProduct);
+        this.productService.destroy(product).subscribe(res => {
             this.appComponent.showLoading(false);
             if (res['result']) {
-                this.loadProjects();
+                this.loadProducts();
                 this.appComponent.showToast(
                     'Operación exitosa',
-                    'Proyecto eliminado',
+                    'Producto eliminado',
                     'success'
                 );
             } else {
@@ -134,17 +114,17 @@ export class AdminComponent implements OnInit {
     }
 
     onRowSelect(event) {
-        this.newProject = false;
-        this.project = this.cloneProject(event.data);
+        this.newProduct = false;
+        this.product = this.cloneProduct(event.data);
         this.displayDialog = true;
     }
 
-    cloneProject(p: Project): Project {
-        const project = new Project();
+    cloneProduct(p: Product): Product {
+        const product = new Product();
         for (const prop of Object.keys(p)) {
-            project[prop] = p[prop];
+            product[prop] = p[prop];
         }
-        return project;
+        return product;
     }
 
     public getSantizeUrl(url: string) {
@@ -159,16 +139,6 @@ export class AdminComponent implements OnInit {
             'success'
         );
         this.route.navigate(['/']);
-    }
-
-    items() {
-        ConfigGlobal.setProject(this.selectedProject);
-        this.route.navigate(['items']);
-    }
-
-    modules() {
-        ConfigGlobal.setProject(this.selectedProject);
-        this.route.navigate(['modules']);
     }
 }
 

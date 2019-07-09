@@ -1,5 +1,9 @@
 import {Component} from '@angular/core';
-import {MessageService} from 'primeng/api';
+import {MenuItem, MessageService} from 'primeng/api';
+import {User} from './models/user';
+import {ConfigGlobal} from './utilities/config-global';
+import {UserService} from './services/user.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,12 +19,32 @@ export class AppComponent {
         color: 'white'
     };
     displayLoading = false;
+    items: MenuItem[];
+    display: boolean;
+    userLogin: User = new User();
 
-    constructor(private messageService: MessageService) {
+    constructor(private messageService: MessageService,
+                private router: Router,
+                private userService: UserService) {
+        this.items = [
+            {
+                label: 'Sobre nosotros',
+                icon: 'pi pi-fw pi-users',
+                command: this.about()
+            }, {
+                label: 'Contáctanos',
+                icon: 'pi pi-fw pi-comments',
+                command: this.contact()
+            },
+        ];
     }
 
     closeMessage() {
         this.messageService.clear('messageDialog');
+    }
+
+    showDialog() {
+        this.display = true;
     }
 
     showToast(title: string, message: string, type: string) {
@@ -53,5 +77,41 @@ export class AppComponent {
 
     showLoading(value: boolean) {
         this.displayLoading = value;
+    }
+
+    login() {
+        this.userService.login(this.userLogin).subscribe(res => {
+            if (res['result']) {
+                const user = res['response'];
+                if (user) {
+                    this.showToast(
+                        '¡¡¡Bienvenido!!!',
+                        user.name,
+                        'success');
+                    ConfigGlobal.setUserLogin(user);
+                    this.router.navigate(['admin']);
+                    this.display = false;
+                } else {
+                    this.showToast(
+                        'Error',
+                        'Usuario o contraseña incorrecta',
+                        'error');
+                }
+            } else {
+                this.showErrorService(res);
+            }
+        });
+    }
+
+    private about() {
+        return () => {
+            this.router.navigate(['about']);
+        };
+    }
+
+    private contact() {
+        return () => {
+            this.router.navigate(['contact']);
+        };
     }
 }

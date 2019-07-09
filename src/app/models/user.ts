@@ -1,16 +1,15 @@
 export class User {
     id: number;
-    name: string;
-    username: number;
-    password: number;
+    fullname: string;
+    email: string;
+    user: string;
+    password: string;
 
     getJson() {
         return this;
     }
 
     getJsonLogin() {
-        delete this.id;
-        delete this.name;
         return this;
     }
 }

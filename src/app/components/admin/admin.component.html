@@ -5,10 +5,10 @@
 </div>
 <!--Table-->
 <p-card>
-    <p-table [columns]="cols" [value]="projects" selectionMode="single" [(selection)]="selectedProject"
+    <p-table [columns]="cols" [value]="products" selectionMode="single" [(selection)]="selectedProduct"
              (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="10">
         <ng-template pTemplate="caption">
-            Proyectos
+            Productos
         </ng-template>
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -46,19 +46,19 @@
 </p-card>
 <!--Form-->
 <form ngNativeValidate (ngSubmit)="save()">
-    <p-dialog header="Proyecto {{project?project.name:''}}" [(visible)]="displayDialog" [responsive]="true"
+    <p-dialog header="Producto {{product?product.name:''}}" [(visible)]="displayDialog" [responsive]="true"
               showEffect="pide"
               [resizable]="true"
               [draggable]="true"
               [modal]="true" [style]="{maxWidth: '500px'}">
-        <div class="ui-g ui-fluid" *ngIf="project">
+        <div class="ui-g ui-fluid" *ngIf="product">
             <ng-container *ngFor="let c of cols">
                 <div *ngIf="c.type === 'text'" class="ui-g-12">
                     <div class="ui-g-4">
                         <label>{{c.header}}</label>
                     </div>
                     <div class="ui-g-8">
-                        <input pInputText [(ngModel)]="project[c.field]" [name]="c.field" [required]="c.required"/>
+                        <input pInputText [(ngModel)]="product[c.field]" [name]="c.field" [required]="c.required"/>
                     </div>
                 </div>
                 <div *ngIf="c.type === 'text-area'" class="ui-g-12">
@@ -66,7 +66,7 @@
                         <label>{{c.header}}</label>
                     </div>
                     <div class="ui-g-8">
-                    <textarea [(ngModel)]="project[c.field]" [rows]="5" [cols]="30" pInputTextarea
+                    <textarea [(ngModel)]="product[c.field]" [rows]="5" [cols]="30" pInputTextarea
                               autoResize="autoResize" [name]="c.field" [required]="c.required"></textarea>
                     </div>
                 </div>
@@ -75,16 +75,16 @@
                         <label>{{c.header}}</label>
                     </div>
                     <div class="ui-g-4">
-                        <img [src]="project[c.field]?getSantizeUrl(project[c.field]):''" alt=""
+                        <img [src]="product[c.field]?getSantizeUrl(product[c.field]):''" alt=""
                              style="max-width: 150px; max-height: 150px">
                     </div>
                     <div class="ui-g-4">
                         <p-fileUpload #form name="myfile[]" accept="image/*" customUpload="true" [auto]="true"
-                                      (uploadHandler)="onUpload($event, project, form)"
+                                      (uploadHandler)="onUpload($event, product, form)"
                                       chooseLabel="Seleccionar" mode="basic"></p-fileUpload>
                         <input type="text" style="height: 0; position: relative; top: -30px;z-index: -1"
                                [required]="c.required"
-                               [(ngModel)]="project[c.field]"
+                               [(ngModel)]="product[c.field]"
                                [name]="c.field">
                     </div>
                 </div>
@@ -93,11 +93,11 @@
                         <label>{{c.header}}</label>
                     </div>
                     <div class="ui-g-8">
-                        <p-dropdown [options]="c.options" [(ngModel)]="project[c.field]" placeholder="Seleccionar"
+                        <p-dropdown [options]="c.options" [(ngModel)]="product[c.field]" placeholder="Seleccionar"
                                     optionLabel="{{c.label}}" [showClear]="true" [name]="c.field"></p-dropdown>
                         <input type="text" style="height: 0; position: relative; top: -30px;z-index: -1"
                                [required]="c.required"
-                               [(ngModel)]="project[c.field]"
+                               [(ngModel)]="product[c.field]"
                                [name]="c.field">
                     </div>
                 </div>
@@ -106,11 +106,7 @@
 
         <p-footer>
             <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button *ngIf="selectedProject" type="button" pButton icon="pi pi-list" (click)="items()"
-                        label="Items"></button>
-                <button *ngIf="selectedProject" type="button" pButton icon="pi pi-th-large" (click)="modules()"
-                        label="Modulos"></button>
-                <button *ngIf="selectedProject" type="button" pButton icon="pi pi-trash" (click)="openToast()"
+                <button *ngIf="selectedProduct" type="button" pButton icon="pi pi-trash" (click)="openToast()"
                         label="Eliminar"></button>
                 <button type="submit" pButton icon="pi pi-check" label="Guardar"></button>
             </div>

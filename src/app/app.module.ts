@@ -8,12 +8,15 @@ import {ButtonModule} from 'primeng/button';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {
     CodeHighlighterModule,
+    ContextMenuModule,
     DialogModule,
     DropdownModule,
     EditorModule,
     FileUploadModule,
     InputTextareaModule,
     InputTextModule,
+    MenubarModule,
+    MenuModule,
     MessageService,
     MultiSelectModule,
     PasswordModule,
@@ -27,9 +30,9 @@ import {HomeComponent} from './components/home/home.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {AppRoutingModule} from './app-routing.module';
 import {TableModule} from 'primeng/table';
-import {ItemsComponent} from './components/items/items.component';
-import {ModulesComponent} from './components/modules/modules.component';
 import {AppGlobal} from './utilities/app-global';
+import {AboutComponent} from './components/about/about.component';
+import {ContactComponent} from './components/contact/contact.component';
 
 
 @NgModule({
@@ -37,8 +40,8 @@ import {AppGlobal} from './utilities/app-global';
         AppComponent,
         HomeComponent,
         AdminComponent,
-        ItemsComponent,
-        ModulesComponent
+        AboutComponent,
+        ContactComponent
     ],
     imports: [
         BrowserModule,
@@ -62,7 +65,10 @@ import {AppGlobal} from './utilities/app-global';
         AppRoutingModule,
         TableModule,
         FileUploadModule,
-        InputTextareaModule
+        InputTextareaModule,
+        MenuModule,
+        ContextMenuModule,
+        MenubarModule
     ],
     providers: [
         MessageService,

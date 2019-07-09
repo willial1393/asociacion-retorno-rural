@@ -4,8 +4,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {AuthGuardService} from './services/auth-guard.service';
-import {ItemsComponent} from './components/items/items.component';
-import {ModulesComponent} from './components/modules/modules.component';
+import {AboutComponent} from './components/about/about.component';
+import {ContactComponent} from './components/contact/contact.component';
 // AuthGuardService
 // https://medium.com/@ryanchenkie_40935/angular-authentication-using-route-guards-bf7a4ca13ae3
 const appRoutes: Routes = [
@@ -17,17 +17,13 @@ const appRoutes: Routes = [
         path: 'admin',
         component: AdminComponent,
         canActivate: [AuthGuardService]
+    }, {
+        path: 'about',
+        component: AboutComponent,
+    }, {
+        path: 'contact',
+        component: ContactComponent,
     },
-    {
-        path: 'items',
-        component: ItemsComponent,
-        canActivate: [AuthGuardService]
-    },
-    {
-        path: 'modules',
-        component: ModulesComponent,
-        canActivate: [AuthGuardService]
-    }
 ];
 
 @NgModule({

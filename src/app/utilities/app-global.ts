@@ -5,6 +5,6 @@ import {HttpHeaders} from '@angular/common/http';
 export class AppGlobal {
     headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'api-key': 'base64:hiABIxt3cOrfVFWu3uXgB/TAtXkNW4PegtGxOxhLVsw='
+        'api-key': 'base64:J68Ud9AJhPEPLoBGL1pRrVM7TJoHZPP+wM1UlMqonSY='
     });
 }

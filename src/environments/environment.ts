@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    endpoint: 'http://api-landing-projects.test/api/'
+    endpoint: 'http://api-asociacion-retorno-rural.test/api/'
 };
 
 /*
