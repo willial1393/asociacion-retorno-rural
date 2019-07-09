@@ -26,6 +26,13 @@ export class AdminComponent implements OnInit {
                 private sanitizer: DomSanitizer,
                 private appComponent: AppComponent,
                 private route: Router) {
+        this.cols = [
+            {field: 'name', header: 'Nombre', type: 'text', required: true},
+            {field: 'description', header: 'Descripción', type: 'text-area', required: true},
+            {field: 'image', header: 'Imagen', type: 'image', required: true},
+            {field: 'value', header: 'Precio', type: 'text', required: true},
+            {field: 'discount', header: 'Descuento', type: 'text', required: true},
+        ];
         this.loadProducts();
     }
 
