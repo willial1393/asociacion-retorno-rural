@@ -28,6 +28,10 @@ export class AppComponent {
                 private userService: UserService) {
         this.items = [
             {
+                label: 'Inicio',
+                icon: 'pi pi-fw pi-home',
+                command: this.home()
+            }, {
                 label: 'Sobre nosotros',
                 icon: 'pi pi-fw pi-users',
                 command: this.about()
@@ -80,7 +84,9 @@ export class AppComponent {
     }
 
     login() {
+        this.showLoading(true);
         this.userService.login(this.userLogin).subscribe(res => {
+            this.showLoading(false);
             if (res['result']) {
                 const user = res['response'];
                 if (user) {
@@ -89,8 +95,8 @@ export class AppComponent {
                         user.name,
                         'success');
                     ConfigGlobal.setUserLogin(user);
-                    this.router.navigate(['admin']);
                     this.display = false;
+                    this.router.navigate(['admin']);
                 } else {
                     this.showToast(
                         'Error',
@@ -112,6 +118,12 @@ export class AppComponent {
     private contact() {
         return () => {
             this.router.navigate(['contact']);
+        };
+    }
+
+    private home() {
+        return () => {
+            this.router.navigate(['']);
         };
     }
 }
