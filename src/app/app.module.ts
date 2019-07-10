@@ -12,6 +12,7 @@ import {
     DialogModule,
     DropdownModule,
     EditorModule,
+    FieldsetModule,
     FileUploadModule,
     InputTextareaModule,
     InputTextModule,
@@ -68,7 +69,8 @@ import {ContactComponent} from './components/contact/contact.component';
         InputTextareaModule,
         MenuModule,
         ContextMenuModule,
-        MenubarModule
+        MenubarModule,
+        FieldsetModule
     ],
     providers: [
         MessageService,
