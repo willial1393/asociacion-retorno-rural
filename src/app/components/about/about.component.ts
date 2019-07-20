@@ -31,10 +31,12 @@ export class AboutComponent implements OnInit {
             this.appComponent.showLoading(false);
             if (res['result']) {
                 this.config = res['response'][0];
-                document.getElementById('containerIssuu').innerHTML = '' +
-                    '<iframe src="' + this.config.issuu +
-                    '" frameborder="0" width="100%"\n' +
-                    '            height="800px"></iframe>';
+                if (this.showDetails) {
+                    document.getElementById('containerIssuu').innerHTML = '' +
+                        '<iframe src="' + this.config.issuu +
+                        '" frameborder="0" width="100%"\n' +
+                        '            height="800px"></iframe>';
+                }
             } else {
                 this.appComponent.showErrorService(res);
             }
