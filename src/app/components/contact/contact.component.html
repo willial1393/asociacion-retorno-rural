@@ -1,20 +1,20 @@
 <p-card>
     <p-fieldset legend="Contáctanos">
         <div style="text-align: center; font-size: 1.2rem">
-            <strong>
-                <p>Vereda Quebrada Grande</p>
-                <p>Celular: 310 7870286 - 310 7504196</p>
-                <p>Santa Rosa de Viterbo - Boyacá</p>
-            </strong>
+            <div style="max-width: 400px; margin: 0 auto">
+                <p *ngFor="let p of config.contact.split('\n')">
+                    <strong>{{p}}</strong>
+                </p>
+            </div>
             <br>
             <p>Síguenos en nuestra redes sociales</p>
-            <a href="https://www.facebook.com/Asociaci%C3%B3n-Retorno-Rural-2367605686808857/">
+            <a [href]="config.facebook">
                 <i class="fab fa-facebook-square" style="font-size: 3rem; margin: 8px"></i>
             </a>
-            <a href="https://twitter.com/RetornoRural">
+            <a [href]="config.twitter">
                 <i class="fab fa-twitter-square" style="font-size: 3rem; margin: 8px"></i>
             </a>
-            <a href="https://www.instagram.com/asosiacionretornorural/?hl=es-la">
+            <a [href]="config.instagram">
                 <i class="fab fa-instagram" style="font-size: 3rem; margin: 8px"></i>
             </a>
         </div>

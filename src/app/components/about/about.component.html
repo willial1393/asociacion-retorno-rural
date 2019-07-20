@@ -1,15 +1,41 @@
 <p-card>
     <p-fieldset legend="¿Quienes somos?">
-        <p style="text-align: center; font-size: large">
-            En la actualidad contamos con 16 asociadas, maquinaría y equipo de modistería
-            necesarios para fabricar ropa de trabajo de excelente calidad. 12 años de experiencia
-            en la confección de ropa de trabajo garantizan nuestros productos.
-        </p>
-        <br><br>
-        <p style="text-align: center; font-size: 1.3rem; font-family: 'Calibri Light'"><strong><i>
-            "TODO TRABAJADOR LLEVA EL MEJOR CAPITAL DENTRO DE SI MISMO Y DEBE
-            AUMENTARLO ARDIENTEMENTE Y APLICARLO SABAMENTE". <br>
-            P. ADOLFO KOLPING
-        </i></strong></p>
+        <div class="text-center">
+            <p style="font-size: large" *ngFor="let p of config.aboutText.split('\n')">
+                {{p}}
+            </p>
+            <br><br>
+            <p *ngFor="let p of config.aboutMessage.split('\n')"
+               style="font-size: 1.3rem; font-family: 'Calibri Light'; max-width: 500px; margin: 0 auto"><strong><i>
+                {{p}}
+            </i></strong></p>
+        </div>
     </p-fieldset>
+</p-card>
+<br>
+<div class="row">
+    <div class="col">
+        <p-card *ngIf="showDetails">
+            <p-fieldset legend="Misión">
+                <p *ngFor="let p of config.mision.split('\n')"
+                   style="text-align: center; font-size: 1.3rem; font-family: 'Calibri Light'"><strong><i>
+                    {{p}}
+                </i></strong></p>
+            </p-fieldset>
+        </p-card>
+    </div>
+    <div class="col">
+        <p-card *ngIf="showDetails">
+            <p-fieldset legend="Visión">
+                <p *ngFor="let p of config.vision.split('\n')"
+                   style="text-align: center; font-size: 1.3rem; font-family: 'Calibri Light'"><strong><i>
+                    {{p}}
+                </i></strong></p>
+            </p-fieldset>
+        </p-card>
+    </div>
+</div>
+<br>
+<p-card *ngIf="showDetails">
+    <div id="containerIssuu"></div>
 </p-card>

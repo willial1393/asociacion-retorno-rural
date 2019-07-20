@@ -1,10 +1,14 @@
-<div class="row">
+<app-about></app-about>
+<div class="row" style="margin-top: 20px">
     <ng-container *ngFor="let p of products">
         <div class="col-sm text-center">
             <p-card header="{{p.name}}" [style]="{maxWidth: '360px', margin: '0 auto'}">
                 <img src="{{p.image}}" alt="" style="max-width: 340px; margin-bottom: 20px">
-                <p><strong>Precio: </strong>{{p.value | currency:'$':'symbol':'3.0'}}</p>
-                <p><strong>Descuento: </strong>{{p.discount}}</p>
+                <p>
+                    <a routerLink="/contact">
+                        <u>Contáctanos para más información</u>
+                    </a>
+                </p>
                 <br>
                 <p style="text-align: justify">Descripción: {{p.description}}</p>
             </p-card>

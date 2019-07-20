@@ -126,4 +126,18 @@ export class AppComponent {
             this.router.navigate(['']);
         };
     }
+
+    isLogin() {
+        return ConfigGlobal.getUserLogin() != null;
+    }
+
+    logout() {
+        ConfigGlobal.setUserLogin(null);
+        this.showToast(
+            'Operación exitosa',
+            'Sesión cerrada',
+            'success'
+        );
+        this.router.navigate(['/']);
+    }
 }

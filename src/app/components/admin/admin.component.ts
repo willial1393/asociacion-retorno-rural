@@ -3,7 +3,6 @@ import {MessageService} from 'primeng/api';
 import {AppComponent} from '../../app.component';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Router} from '@angular/router';
-import {ConfigGlobal} from '../../utilities/config-global';
 import {Product} from '../../models/product';
 import {ProductService} from '../../services/product.service';
 
@@ -138,14 +137,6 @@ export class AdminComponent implements OnInit {
         return this.sanitizer.bypassSecurityTrustUrl(url);
     }
 
-    logout() {
-        ConfigGlobal.setUserLogin(null);
-        this.appComponent.showToast(
-            'Operación exitosa',
-            'Sesión cerrada',
-            'success'
-        );
-        this.route.navigate(['/']);
-    }
+
 }
 

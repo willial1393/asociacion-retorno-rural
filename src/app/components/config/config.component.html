@@ -1,0 +1,35 @@
+<p-card>
+    <p-fieldset>
+        <p-header>Configuración
+            <button (click)="save()" pButton type="button" label="Guardar" class="ui-button-success"></button>
+        </p-header>
+        <h5>Misión</h5>
+        <textarea rows="1" cols="10" style="width: 100%" pInputTextarea autoResize="autoResize"
+                  [(ngModel)]="config.mision"></textarea>
+        <h5>Visión</h5>
+        <textarea rows="1" cols="10" style="width: 100%" pInputTextarea autoResize="autoResize"
+                  [(ngModel)]="config.vision"></textarea>
+        <h5>¿Quienes somos? (texto)</h5>
+        <textarea rows="1" cols="10" style="width: 100%" pInputTextarea autoResize="autoResize"
+                  [(ngModel)]="config.aboutText"></textarea>
+        <h5>¿Quienes somos? (mensaje)</h5>
+        <textarea rows="1" cols="10" style="width: 100%" pInputTextarea autoResize="autoResize"
+                  [(ngModel)]="config.aboutMessage"></textarea>
+        <h5>Facebook</h5>
+        <textarea rows="1" cols="10" style="width: 100%" pInputTextarea autoResize="autoResize"
+                  [(ngModel)]="config.facebook"></textarea>
+        <h5>Instagram</h5>
+        <textarea rows="1" cols="10" style="width: 100%" pInputTextarea autoResize="autoResize"
+                  [(ngModel)]="config.instagram"></textarea>
+        <h5>Twitter</h5>
+        <textarea rows="1" cols="10" style="width: 100%" pInputTextarea autoResize="autoResize"
+                  [(ngModel)]="config.twitter"></textarea>
+        <h5>Issuu</h5>
+        <textarea rows="1" cols="10" style="width: 100%" pInputTextarea autoResize="autoResize"
+                  [(ngModel)]="config.issuu"></textarea>
+        <h5>Contáctanos</h5>
+        <textarea rows="1" cols="10" style="width: 100%" pInputTextarea autoResize="autoResize"
+                  [(ngModel)]="config.contact"></textarea>
+    </p-fieldset>
+
+</p-card>

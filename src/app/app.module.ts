@@ -34,6 +34,7 @@ import {TableModule} from 'primeng/table';
 import {AppGlobal} from './utilities/app-global';
 import {AboutComponent} from './components/about/about.component';
 import {ContactComponent} from './components/contact/contact.component';
+import {ConfigComponent} from './components/config/config.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {ContactComponent} from './components/contact/contact.component';
         HomeComponent,
         AdminComponent,
         AboutComponent,
-        ContactComponent
+        ContactComponent,
+        ConfigComponent
     ],
     imports: [
         BrowserModule,

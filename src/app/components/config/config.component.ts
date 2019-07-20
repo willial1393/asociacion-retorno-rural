@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {Config} from '../../models/config';
 import {MessageService} from 'primeng/api';
-import {ConfigService} from '../../services/config.service';
 import {AppComponent} from '../../app.component';
+import {ConfigService} from '../../services/config.service';
+import {Config} from '../../models/config';
 
 @Component({
-    selector: 'app-contact',
-    templateUrl: './contact.component.html',
-    styleUrls: ['./contact.component.css']
+    selector: 'app-config',
+    templateUrl: './config.component.html',
+    styleUrls: ['./config.component.css']
 })
-export class ContactComponent implements OnInit {
+export class ConfigComponent implements OnInit {
 
     config = new Config();
 
@@ -34,4 +34,16 @@ export class ContactComponent implements OnInit {
         });
     }
 
+    save() {
+        this.appComponent.showLoading(true);
+        this.configService.store(this.config).subscribe(res => {
+            this.appComponent.showLoading(false);
+            if (res['result']) {
+                this.appComponent.showToast('Configuración guardada', '', 'success');
+                this.loadConfig();
+            } else {
+                this.appComponent.showErrorService(res);
+            }
+        });
+    }
 }

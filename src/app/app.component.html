@@ -1,8 +1,22 @@
 <div style="position: sticky; top: 0; z-index: 1000">
     <p-menubar [model]="items">
         <div>
-            <button type="button" class="ui-button-secondary" (click)="showDialog()" pButton icon="pi pi-sign-in"
+            <button *ngIf="!isLogin()" type="button" class="ui-button-secondary" (click)="showDialog()" pButton
+                    icon="pi pi-sign-in"
                     label="Ingresar"></button>
+            <a href="admin" *ngIf="isLogin()">
+                <button type="button" class="ui-button-success" pButton icon="pi pi-tags"
+                        label="Productos"></button>&nbsp;
+
+            </a>
+            <a href="config" *ngIf="isLogin()">
+                <button type="button" class="ui-button-success" pButton icon="pi pi-user"
+                        label="Configuración"></button>&nbsp;
+
+            </a>
+            <button *ngIf="isLogin()" pButton type="button" icon="pi pi-sign-out" label="Cerrar sesión"
+                    (click)="logout()"
+                    class="ui-button-secondary"></button>
         </div>
     </p-menubar>
 </div>
