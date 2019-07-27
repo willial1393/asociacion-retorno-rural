@@ -1,7 +1,8 @@
-<p-card>
+<p-card [style]="{minHeight: 600}">
     <p-fieldset legend="¿Quienes somos?">
         <div class="text-center">
-            <p style="font-size: large" *ngFor="let p of config.aboutText.split('\n')">
+          <img src="../../../assets/images/logo.jpg" height="400"/>
+          <p style="font-size: large" *ngFor="let p of config.aboutText.split('\n')">
                 {{p}}
             </p>
             <br><br>
