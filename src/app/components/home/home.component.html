@@ -1,18 +1,19 @@
 <app-about></app-about>
 <div class="row" style="margin-top: 20px">
-    <ng-container *ngFor="let p of products">
-        <div class="col-sm text-center">
-            <p-card header="{{p.name}}" [style]="{maxWidth: '360px', margin: '0 auto'}">
-                <img src="{{p.image}}" alt="" style="max-width: 340px; margin-bottom: 20px">
-                <p>
-                    <a routerLink="/contact">
-                        <u>Contáctanos para más información</u>
-                    </a>
-                </p>
-                <br>
-                <p style="text-align: justify">Descripción: {{p.description}}</p>
-            </p-card>
-        </div>
-    </ng-container>
+  <ng-container *ngFor="let p of products">
+    <div class="col-sm text-center" style="margin-bottom: 20px">
+      <p-card header="{{p.name}}" [style]="{maxWidth: '600px', margin: '0 auto'}">
+        <img rel="preload" [src]="p.image" alt="../../../assets/images/logo.jpg" style="margin-bottom: 20px"
+             height="400">
+        <p>
+          <a routerLink="/contact">
+            <u>Contáctanos para más información</u>
+          </a>
+        </p>
+        <br>
+        <p style="text-align: justify">Descripción: {{p.description}}</p>
+      </p-card>
+    </div>
+  </ng-container>
 </div>
 
