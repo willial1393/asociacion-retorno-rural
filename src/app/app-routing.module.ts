@@ -10,32 +10,32 @@ import {ConfigComponent} from './components/config/config.component';
 // AuthGuardService
 // https://medium.com/@ryanchenkie_40935/angular-authentication-using-route-guards-bf7a4ca13ae3
 const appRoutes: Routes = [
-    {
-        path: '',
-        component: HomeComponent
-    }, {
-        path: 'admin',
-        component: AdminComponent,
-        canActivate: [AuthGuardService]
-    }, {
-        path: 'config',
-        component: ConfigComponent,
-        canActivate: [AuthGuardService]
-    }, {
-        path: 'about',
-        component: AboutComponent,
-    }, {
-        path: 'contact',
-        component: ContactComponent,
-    },
+  {
+    path: '',
+    component: HomeComponent
+  }, {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuardService]
+  }, {
+    path: 'config',
+    component: ConfigComponent,
+    canActivate: [AuthGuardService]
+  }, {
+    path: 'about',
+    component: AboutComponent,
+  }, {
+    path: 'contact',
+    component: ContactComponent,
+  },
 ];
 
 @NgModule({
-    declarations: [],
-    imports: [
-        CommonModule,
-        RouterModule.forRoot(appRoutes),
-    ]
+  declarations: [],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(appRoutes, {useHash: true}),
+  ]
 })
 export class AppRoutingModule {
 }
