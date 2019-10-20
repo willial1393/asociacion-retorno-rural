@@ -4,12 +4,12 @@
             <button *ngIf="!isLogin()" type="button" class="ui-button-secondary" (click)="showDialog()" pButton
                     icon="pi pi-sign-in"
                     label="Ingresar"></button>
-            <a href="admin" *ngIf="isLogin()">
+          <a routerLink="admin" *ngIf="isLogin()">
                 <button type="button" class="ui-button-success" pButton icon="pi pi-tags"
                         label="Productos"></button>&nbsp;
 
             </a>
-            <a href="config" *ngIf="isLogin()">
+          <a routerLink="config" *ngIf="isLogin()">
                 <button type="button" class="ui-button-success" pButton icon="pi pi-user"
                         label="Configuración"></button>&nbsp;
 
