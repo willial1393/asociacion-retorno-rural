@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-  endpoint: 'http://18.217.224.22/asorural-api/public/api/'
+  endpoint: 'http://3.133.54.94/asorural-api/api/'
 };
